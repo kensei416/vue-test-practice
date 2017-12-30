@@ -6,6 +6,7 @@
 var webpackConfig = require('../../build/webpack.test.conf')
 
 module.exports = function (config) {
+  let reportDir = process.env['CIRCLE_TEST_REPORTS'] || '.'
   config.set({
     // to run in additional browsers:
     // 1. install corresponding karma launcher
@@ -23,9 +24,9 @@ module.exports = function (config) {
       noInfo: true
     },
     coverageReporter: {
-      dir: './coverage',
+      dir: reportDir + '/coverage/',
       reporters: [
-        { type: 'lcov', subdir: '.' },
+        { type: 'html' },
         { type: 'text-summary' }
       ]
     }
